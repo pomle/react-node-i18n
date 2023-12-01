@@ -2,10 +2,10 @@ import React from "react";
 import { createInternationalizationContext } from "../context";
 import { render, screen } from "@testing-library/react";
 
-describe("createInternationalizationContext", () => {
+describe("createInternationalizationProvider", () => {
   const {
     localize,
-    InternationalizationContext,
+    InternationalizationProvider,
   } = createInternationalizationContext(["en-US", "sv-SE"] as const);
 
   describe("#localize", () => {
@@ -16,9 +16,9 @@ describe("createInternationalizationContext", () => {
       });
 
       render(
-        <InternationalizationContext initial='en-US'>
+        <InternationalizationProvider initial='en-US'>
           <Trans />
-        </InternationalizationContext>,
+        </InternationalizationProvider>,
       );
 
       await screen.findByText("English text");
@@ -31,9 +31,9 @@ describe("createInternationalizationContext", () => {
       });
 
       render(
-        <InternationalizationContext initial='sv-SE'>
+        <InternationalizationProvider initial='sv-SE'>
           <Trans />
-        </InternationalizationContext>,
+        </InternationalizationProvider>,
       );
 
       await screen.findByText("Swedish text");
@@ -46,9 +46,9 @@ describe("createInternationalizationContext", () => {
       });
 
       render(
-        <InternationalizationContext initial='sv-SE'>
+        <InternationalizationProvider initial='sv-SE'>
           <Trans size={5} />
-        </InternationalizationContext>,
+        </InternationalizationProvider>,
       );
 
       await screen.findByText("Storlek: 5");
@@ -61,9 +61,9 @@ describe("createInternationalizationContext", () => {
       });
 
       render(
-        <InternationalizationContext initial='sv-SE'>
+        <InternationalizationProvider initial='sv-SE'>
           <Trans />
-        </InternationalizationContext>,
+        </InternationalizationProvider>,
       );
 
       await screen.findByText("Vanlig sträng");

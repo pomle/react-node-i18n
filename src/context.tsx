@@ -22,7 +22,7 @@ export function createInternationalizationContext<
 
   const Context = createContext<InternationalizationContextValue | null>(null);
 
-  function InternationalizationContext({
+  function InternationalizationProvider({
     initial,
     children,
   }: InternationalizationContextProps<Locale>) {
@@ -35,7 +35,7 @@ export function createInternationalizationContext<
     );
   }
 
-  function useInternationalizationContext() {
+  function useInternationalization() {
     const value = useContext(Context);
     if (value === null) {
       throw new Error(
@@ -46,7 +46,7 @@ export function createInternationalizationContext<
   }
 
   function useLocale() {
-    return useInternationalizationContext().locale;
+    return useInternationalization().locale;
   }
 
   type Renderer<Props> =
@@ -87,8 +87,8 @@ export function createInternationalizationContext<
   }
 
   return {
-    InternationalizationContext,
-    useInternationalizationContext,
+    InternationalizationProvider,
+    useInternationalization,
     useLocale,
     localize,
   };
