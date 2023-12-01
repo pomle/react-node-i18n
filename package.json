@@ -1,20 +1,17 @@
 {
-  "name": "@pomle/react-flex-i18n",
+  "name": "@pomle/react-node-i18n",
   "version": "0.0.0",
-  "description": "",
-  "author": "",
+  "description": "React Node based i18n library.",
+  "author": "Pontus Alexander <pontus.alexander@gmail.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pomle/react-flex-i18n"
+    "url": "git+https://github.com/pomle/react-node-i18n"
   },
   "keywords": [],
   "source": "src/index.ts",
   "main": "./dist/index.js",
   "module": "./dist/index.modern.js",
-  "engines": {
-    "node": ">=10"
-  },
   "scripts": {
     "build": "microbundle",
     "start": "microbundle watch",
