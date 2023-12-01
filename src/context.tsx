@@ -20,7 +20,12 @@ export function createInternationalizationContext<
 
   type Localizable<T> = Record<Locale, T>;
 
-  const Context = createContext<InternationalizationContextValue | null>(null);
+  const Context = createContext<InternationalizationContextValue>({
+    locale: fallback,
+    setLocale() {
+      throw new Error("setLocale called on dummy context");
+    },
+  });
 
   function InternationalizationProvider({
     initial,
@@ -36,13 +41,7 @@ export function createInternationalizationContext<
   }
 
   function useInternationalization() {
-    const value = useContext(Context);
-    if (value === null) {
-      throw new Error(
-        "useInternationalizationContext without InternationalizationContext",
-      );
-    }
-    return value;
+    return useContext(Context);
   }
 
   function useLocale() {
