@@ -77,7 +77,52 @@ Core function that creates all utilities needed.
 
 ### `localize`
 
-Factory function returned by `createInternationalizationContext` that creates localizable components in your project.
+Factory function returned by `createInternationalizationContext` that creates localizable components in your project. 
+
+*This is likely the function you will need the most.* 
+
+It requires a specification for each language to be set, and then ensures that the correct output emitted based on the currently selected locale.
+
+```tsx
+import { localize } from "lib/i18n/localization"; // Your setup file
+
+const Age = localize<{age: number}>({
+  en_GB: ({age}) => <>My age: {age}</>,
+  sv_SE: ({age}) => <>Min ålder: {age}</>,
+});
+
+export const Trans = { Age };
+```
+
+It provides three ways to define translations.
+
+1. Strings when you want simplicity.
+   
+```tsx
+const Age = localize({
+  en_GB: "Age",
+  sv_SE: "Ålder",
+});
+```
+
+2. React Fragments for when you need to output HTML.
+   
+```tsx
+const Age = localize({
+  en_GB: <>My <b>Age</b></>,
+  sv_SE: <>Min <b>Ålder</b></>,
+});
+```
+
+3. React component for when you need arguments and templating.
+   
+```tsx
+const Age = localize<{age: number}>({
+  en_GB: <>My Age is <b>{age}</b></>,
+  sv_SE: <>Min ålder är <b>{age}</b></b>,
+});
+```
+
 
 ### `useInternationalization`
 
