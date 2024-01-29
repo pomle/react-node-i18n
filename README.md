@@ -68,3 +68,25 @@ export function AgeComponent({age}: {age: number}) {
   </div>
 }
 ```
+
+## Reference
+
+### `createInternationalizationContext`
+
+Core function that creates all utilities needed.
+
+### `localize`
+
+Factory function returned by `createInternationalizationContext` that creates localizable components in your project.
+
+### `useInternationalization`
+
+Hook that provides access to currently selected locale and a setter function to set locale.
+
+### `useLocale`
+
+Convenience hook that returns only the currently selected locale.
+
+### `InternationalizationProvider`
+
+Context provider component that provides functionality for `useInternationalization` and `useLocale`. A basic implementation of a [React Context](https://react.dev/learn/passing-data-deeply-with-context).
