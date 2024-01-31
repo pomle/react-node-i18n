@@ -98,7 +98,7 @@ function MyComponent() {
 }
 ```
 
-It provides three ways to define translations.
+#### It provides three ways to define translations.
 
 1. Strings when you want simplicity.
    
@@ -125,6 +125,34 @@ const Age = localize<{age: number}>({
   en_GB: <>My Age is <b>{age}</b></>,
   sv_SE: <>Min ålder är <b>{age}</b></b>,
 });
+```
+
+Emit translation by mounting component.
+
+```tsx
+const Age = localize({
+  "en-US": "Age",
+  "sv-SE": "Ålder",
+});
+
+function Component() {
+  return <div>
+    <Age/>
+  </div>
+}
+```
+
+When translation defined without HTML you can call it as a function to emit it's string value.
+
+```tsx
+const Age = localize({
+  "en-US": "Age",
+  "sv-SE": "Ålder",
+});
+
+function Component() {
+  return <input placeholder={Age()} />;
+}
 ```
 
 
