@@ -1,6 +1,6 @@
 {
   "name": "@pomle/react-node-i18n",
-  "version": "0.0.0-3",
+  "version": "0.0.0-4",
   "description": "React Node based i18n library.",
   "author": "Pontus Alexander <pontus.alexander@gmail.com>",
   "license": "MIT",
