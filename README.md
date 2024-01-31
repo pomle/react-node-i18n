@@ -167,3 +167,21 @@ Convenience hook that returns only the currently selected locale.
 ### `InternationalizationProvider`
 
 Context provider component that provides functionality for `useInternationalization` and `useLocale`. A basic implementation of a [React Context](https://react.dev/learn/passing-data-deeply-with-context).
+
+
+## Pluralization
+
+This library have no opinions on pluralization or other deviations. However, below are some examples for inspiration.
+
+```tsx
+const Age = localize<{age: number}>({
+  "en-US": ({age}) => {
+    if (age === 1) {
+      return <>1 year old</>;
+    }
+
+    return <>{age} years old</>;
+  },
+  "sv-SE": ({age}) => <>{age} år gammal</>,
+});
+```
