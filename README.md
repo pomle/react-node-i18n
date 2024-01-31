@@ -148,8 +148,8 @@ const Age = localize({
    
 ```tsx
 const Age = localize<{age: number}>({
-  en_GB: <>My Age is <b>{age}</b></>,
-  sv_SE: <>Min ålder är <b>{age}</b></b>,
+  en_GB: ({age}) => <>My Age is <b>{age}</b></>,
+  sv_SE: ({age}) => <>Min ålder är <b>{age}</b></>,
 });
 ```
 
