@@ -24,6 +24,7 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react-hooks": "^7.0.2",
+    "@testing-library/react": "^14.0.0",
     "@types/jest": "^25.1.4",
     "@types/node": "^12.12.38",
     "@types/react": "^18.2.48",
@@ -53,8 +54,5 @@
   },
   "files": [
     "dist"
-  ],
-  "dependencies": {
-    "@testing-library/react": "^14.0.0"
-  }
+  ]
 }
