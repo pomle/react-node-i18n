@@ -1,7 +1,7 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext } from "react";
 
 interface InternationalizationContextProps<T> {
-  initial: T;
+  locale: T;
   children: React.ReactNode;
 }
 
@@ -15,29 +15,19 @@ export function createInternationalizationContext<
 
   type InternationalizationContextValue = {
     locale: Locale;
-    setLocale(locale: Locale): void;
   };
 
   type Localizable<T> = Record<Locale, T>;
 
   const Context = createContext<InternationalizationContextValue>({
     locale: fallback,
-    setLocale() {
-      throw new Error("setLocale called on dummy context");
-    },
   });
 
   function InternationalizationProvider({
-    initial,
+    locale,
     children,
   }: InternationalizationContextProps<Locale>) {
-    const [locale, setLocale] = useState(initial);
-
-    return (
-      <Context.Provider value={{ locale, setLocale }}>
-        {children}
-      </Context.Provider>
-    );
+    return <Context.Provider value={{ locale }}>{children}</Context.Provider>;
   }
 
   function useInternationalization() {
