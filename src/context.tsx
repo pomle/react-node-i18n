@@ -2,7 +2,12 @@ import React, { createContext, useContext } from "react";
 
 interface InternationalizationContextProps<T> {
   locale: T;
+  onChange?: (locale: T) => void;
   children: React.ReactNode;
+}
+
+function setLocale() {
+  throw new Error("InternationalizationProvider onChange not configured");
 }
 
 export type Localizable<L extends readonly string[], T> = Record<L[number], T>;
@@ -15,19 +20,26 @@ export function createInternationalizationContext<
 
   type InternationalizationContextValue = {
     locale: Locale;
+    setLocale(locale: Locale): void;
   };
 
   type Localizable<T> = Record<Locale, T>;
 
   const Context = createContext<InternationalizationContextValue>({
     locale: fallback,
+    setLocale,
   });
 
   function InternationalizationProvider({
     locale,
+    onChange = setLocale,
     children,
   }: InternationalizationContextProps<Locale>) {
-    return <Context.Provider value={{ locale }}>{children}</Context.Provider>;
+    return (
+      <Context.Provider value={{ locale, setLocale: onChange }}>
+        {children}
+      </Context.Provider>
+    );
   }
 
   function useInternationalization() {

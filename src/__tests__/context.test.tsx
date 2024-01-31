@@ -5,6 +5,7 @@ import { render, screen } from "@testing-library/react";
 describe("createInternationalizationProvider", () => {
   const {
     localize,
+    useInternationalization,
     InternationalizationProvider,
   } = createInternationalizationContext(["en-US", "sv-SE"] as const);
 
@@ -105,6 +106,48 @@ describe("createInternationalizationProvider", () => {
       );
 
       await screen.findByPlaceholderText("Ålder: 6");
+    });
+  });
+
+  describe("#InternationalizationProvider", () => {
+    it("throws if setLocale called without onChange", async () => {
+      function Component() {
+        const { setLocale } = useInternationalization();
+
+        expect(() => {
+          setLocale("en-US");
+        }).toThrow(
+          new Error("InternationalizationProvider onChange not configured"),
+        );
+
+        return null;
+      }
+
+      render(
+        <InternationalizationProvider locale='en-US'>
+          <Component />
+        </InternationalizationProvider>,
+      );
+    });
+
+    it("calls configured onChange for setLocale ", async () => {
+      function Component() {
+        const { setLocale } = useInternationalization();
+
+        setLocale("en-US");
+
+        return null;
+      }
+
+      const setLocale = jest.fn();
+
+      render(
+        <InternationalizationProvider locale='en-US' onChange={setLocale}>
+          <Component />
+        </InternationalizationProvider>,
+      );
+
+      expect(setLocale).toHaveBeenCalledWith("en-US");
     });
   });
 });
