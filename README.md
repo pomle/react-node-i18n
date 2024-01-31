@@ -15,11 +15,14 @@ export enum Locale {
 }
 
 const {
-  localize,
-  useLocale,
   InternationalizationProvider,
+  localize,
   useInternationalization,
-} = createInternationalizationContext([Locale.enGB, Locale.svSE]);
+  useLocale,
+} = createInternationalizationContext([
+  Locale.enGB,
+  Locale.svSE.
+]);
 
 export {
   localize,
