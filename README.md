@@ -4,7 +4,7 @@ An internationalization library based on React components.
 
 ## Usage
 
-1. Create setup file to create the i18n context.
+1. Create setup file to create the i18n context. You can use any list of strings as keys. We recommend using some kind of ISO reference.
 
 ```tsx
 import { createInternationalizationContext } from "@pomle/react-node-i18n";
@@ -35,11 +35,19 @@ export {
 import { RestOfTheApp } from "./App.tsx";
 import { InternationalizationProvider, Locale } from "i18n/localization";
 
+function Internationalization({children}) {
+  const [locale, setLocale] = useState(Locale.enGB);
+
+  return <InternationalizationProvider locale={Locale.enGB} onChange={setLocale}>
+    {children}
+  </InternationalizationProvider>
+}
+
 export function App() {
   return (
-    <InternationalizationProvider locale={Locale.enGB}>
+    <Internationalization>
       <RestOfTheApp/>
-    </InternationalizationProvider>
+    </Internationalization>
   );
 }
 ```
@@ -66,6 +74,24 @@ export function AgeComponent({age}: {age: number}) {
   return <div>
     <Trans.Title> {age}
   </div>
+}
+```
+
+4. The `useInternationalization` hook will provide access to the current, and the set function you provide.
+
+```tsx
+import { useInternationalization } from "i18n/localization";
+
+export function LocaleSelector() {
+  const {locale, setLocale} = useInternationalization();
+
+  return <>
+    {[Locale.enGB, Locale.svSE].map(locale => {
+      <button onClick={() => setLocale(locale)}>
+        {locale}
+      </button>
+    })}
+  </>;
 }
 ```
 
