@@ -60,6 +60,21 @@ describe("createInternationalizationProvider", () => {
         "sv-SE": "Vanlig sträng",
       });
 
+      render(
+        <InternationalizationProvider initial='sv-SE'>
+          <Trans />
+        </InternationalizationProvider>,
+      );
+
+      await screen.findByText("Vanlig sträng");
+    });
+
+    it("supports strictly strings", async () => {
+      const Trans = localize({
+        "en-US": "Plain string",
+        "sv-SE": "Vanlig sträng",
+      });
+
       function Component() {
         return <input placeholder={Trans()} />;
       }
