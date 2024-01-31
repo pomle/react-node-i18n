@@ -79,9 +79,9 @@ Core function that creates all utilities needed.
 
 Factory function returned by `createInternationalizationContext` that creates localizable components in your project. 
 
-*This is likely the function you will need the most.* 
+*This is the function you will use the most.* 
 
-It requires a specification for each language to be set, and then ensures that the correct output emitted based on the currently selected locale.
+It requires a specification for each language to be set, and then ensures that the correct output emitted based on the set locale.
 
 ```tsx
 import { localize } from "lib/i18n/localization"; // Your setup file
@@ -91,7 +91,11 @@ const Age = localize<{age: number}>({
   sv_SE: ({age}) => <>Min ålder: {age}</>,
 });
 
-export const Trans = { Age };
+function MyComponent() {
+  return <div>
+    <h1><Age age={37} /></h1>
+  </div
+}
 ```
 
 It provides three ways to define translations.
