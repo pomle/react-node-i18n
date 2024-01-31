@@ -64,14 +64,14 @@ export function createInternationalizationContext<
 
   function localize<Props>(
     renderers: Localizable<(props: Props) => string>,
-  ): (props: Props) => JSX.Element;
+  ): (props: Props) => string;
 
-  function localize(renderers: Localizable<string>): () => JSX.Element;
+  function localize(renderers: Localizable<string>): () => string;
 
   function localize<Props = never>(
     renderers: Renderer<Props>,
   ): (props: Props) => React.ReactNode {
-    function LocalizedComponent(props: Props) {
+    function LocalizedComponent(props: Props): React.ReactNode {
       const locale = useLocale();
 
       const renderer = renderers[locale] ?? renderers[fallback];
