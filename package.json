@@ -19,7 +19,7 @@
     "test": "jest test --env=jsdom"
   },
   "peerDependencies": {
-    "react": ">=16.8.0"
+    "react": ">=18"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^4.2.4",
