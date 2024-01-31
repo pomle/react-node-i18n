@@ -37,7 +37,7 @@ import { InternationalizationProvider, Locale } from "i18n/localization";
 
 export function App() {
   return (
-    <InternationalizationProvider initial={Locale.enGB}>
+    <InternationalizationProvider locale={Locale.enGB}>
       <RestOfTheApp/>
     </InternationalizationProvider>
   );
