@@ -16,7 +16,7 @@ describe("createInternationalizationProvider", () => {
       });
 
       render(
-        <InternationalizationProvider initial='en-US'>
+        <InternationalizationProvider locale='en-US'>
           <Trans />
         </InternationalizationProvider>,
       );
@@ -31,7 +31,7 @@ describe("createInternationalizationProvider", () => {
       });
 
       render(
-        <InternationalizationProvider initial='sv-SE'>
+        <InternationalizationProvider locale='sv-SE'>
           <Trans />
         </InternationalizationProvider>,
       );
@@ -46,7 +46,7 @@ describe("createInternationalizationProvider", () => {
       });
 
       render(
-        <InternationalizationProvider initial='sv-SE'>
+        <InternationalizationProvider locale='sv-SE'>
           <Trans size={5} />
         </InternationalizationProvider>,
       );
@@ -61,7 +61,7 @@ describe("createInternationalizationProvider", () => {
       });
 
       render(
-        <InternationalizationProvider initial='sv-SE'>
+        <InternationalizationProvider locale='sv-SE'>
           <Trans />
         </InternationalizationProvider>,
       );
@@ -80,7 +80,7 @@ describe("createInternationalizationProvider", () => {
       }
 
       render(
-        <InternationalizationProvider initial='sv-SE'>
+        <InternationalizationProvider locale='sv-SE'>
           <Component />
         </InternationalizationProvider>,
       );
@@ -99,7 +99,7 @@ describe("createInternationalizationProvider", () => {
       }
 
       render(
-        <InternationalizationProvider initial='sv-SE'>
+        <InternationalizationProvider locale='sv-SE'>
           <Component />
         </InternationalizationProvider>,
       );
