@@ -87,5 +87,24 @@ describe("createInternationalizationProvider", () => {
 
       await screen.findByPlaceholderText("Vanlig sträng");
     });
+
+    it("supports strictly strings with args", async () => {
+      const Trans = localize<{ age: number }>({
+        "en-US": ({ age }) => `Age: ${age}`,
+        "sv-SE": ({ age }) => `Ålder: ${age}`,
+      });
+
+      function Component() {
+        return <input placeholder={Trans({ age: 6 })} />;
+      }
+
+      render(
+        <InternationalizationProvider initial='sv-SE'>
+          <Component />
+        </InternationalizationProvider>,
+      );
+
+      await screen.findByPlaceholderText("Ålder: 6");
+    });
   });
 });
