@@ -41,7 +41,7 @@ import { InternationalizationProvider, Locale } from "i18n/localization";
 function Internationalization({children}) {
   const [locale, setLocale] = useState(Locale.enGB);
 
-  return <InternationalizationProvider locale={Locale.enGB} onChange={setLocale}>
+  return <InternationalizationProvider locale={locale} onChange={setLocale}>
     {children}
   </InternationalizationProvider>
 }
