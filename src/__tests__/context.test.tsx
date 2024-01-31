@@ -60,13 +60,17 @@ describe("createInternationalizationProvider", () => {
         "sv-SE": "Vanlig sträng",
       });
 
+      function Component() {
+        return <input placeholder={Trans()} />;
+      }
+
       render(
         <InternationalizationProvider initial='sv-SE'>
-          <Trans />
+          <Component />
         </InternationalizationProvider>,
       );
 
-      await screen.findByText("Vanlig sträng");
+      await screen.findByPlaceholderText("Vanlig sträng");
     });
   });
 });
