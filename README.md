@@ -25,14 +25,14 @@ const {
 ]);
 
 export {
-  localize,
-  useLocale,
   InternationalizationProvider,
+  localize,
   useInternationalization,
+  useLocale,
 };
 ```
    
-2. Import `InternationalizationProvider` from setup file and mount in your app.
+2. Import `InternationalizationProvider` from setup file and mount in your app. Implement state here if you need the app to be able to set the language. The `onChange` function will be called when locale is set.
 
 ```tsx
 import { RestOfTheApp } from "./App.tsx";
@@ -193,7 +193,17 @@ function Component() {
 
 ### `useInternationalization`
 
-Hook that provides access to currently selected locale and a setter function to set locale.
+Hook that provides access to currently selected locale and a setter function to set locale. Calling `setLocale` will trigger the `onChange` callback given to `InternationalizationProvider`.
+
+```ts
+function Component() {
+  const {locale, setLocale} = useInternationalization();
+
+  // Read of set locale
+
+  return null;
+}
+```
 
 ### `useLocale`
 
