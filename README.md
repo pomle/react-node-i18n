@@ -36,7 +36,7 @@ export {
 
 ```tsx
 import { RestOfTheApp } from "./App.tsx";
-import { InternationalizationProvider, Locale } from "i18n/localization";
+import { InternationalizationProvider, Locale } from "lib/i18n";
 
 function Internationalization({children}) {
   const [locale, setLocale] = useState(Locale.enGB);
@@ -58,7 +58,7 @@ export function App() {
 3. Import and use `localize` function from setup file and call to create translation components. We recommend one sibling file per component called `trans.tsx` that export all translatables as a single object.
 
 ```tsx
-import { localize } from "lib/i18n/localization";
+import { localize } from "lib/i18n";
 
 const Title = localize({
   en_GB: <>My Age</>,
@@ -83,7 +83,7 @@ export function AgeComponent({age}: {age: number}) {
 4. The `useInternationalization` hook will provide access to the current, and the set function you provide.
 
 ```tsx
-import { useInternationalization } from "i18n/localization";
+import { useInternationalization } from "lib/i18n";
 
 export function LocaleSelector() {
   const {locale, setLocale} = useInternationalization();
@@ -119,7 +119,7 @@ Factory function returned by `createInternationalizationContext` that creates Re
 It requires a specification for each language to be set, and then ensures that the correct output emitted based on the set locale.
 
 ```tsx
-import { localize } from "lib/i18n/localization"; // Your setup file
+import { localize } from "lib/i18n"; // Your setup file
 
 const Age = localize<{age: number}>({
   en_GB: ({age}) => <>My age: {age}</>,
@@ -196,10 +196,12 @@ function Component() {
 Hook that provides access to currently selected locale and a setter function to set locale. Calling `setLocale` will trigger the `onChange` callback given to `InternationalizationProvider`.
 
 ```ts
+import { useInternationalization, Locale } from "lib/i18n";
+
 function Component() {
   const {locale, setLocale} = useInternationalization();
 
-  // Read of set locale
+  // Read or set locale
 
   return null;
 }
@@ -208,6 +210,22 @@ function Component() {
 ### `useLocale`
 
 Convenience hook that returns only the currently selected locale.
+
+Using this hook you can roll your own translation component using the exact same logic as the `localize` function uses. This can be useful if the localization needed does not map well to each language.
+
+```tsx
+import { useLocale, Locale } from "lib/i18n";
+
+const Slogan = () => {
+  const locale = useLocale();
+  // Sweden uses local slogan, all other countries uses international slogan
+  if (locale === Locale.svSE) {
+    return <>Här får du mer för pengarna!</>;
+  }
+
+  return <>Best Value on the WWW</b>;
+}
+```
 
 
 ## Pluralization
