@@ -104,9 +104,15 @@ export function LocaleSelector() {
 
 Core function that creates all utilities needed.
 
+
+### `InternationalizationProvider`
+
+Context provider component that provides functionality for `useInternationalization` and `useLocale`. A basic implementation of a [React Context](https://react.dev/learn/passing-data-deeply-with-context).
+
+
 ### `localize`
 
-Factory function returned by `createInternationalizationContext` that creates localizable components in your project. 
+Factory function returned by `createInternationalizationContext` that creates React components with localization support.
 
 *This is the function you will use the most.* 
 
@@ -192,10 +198,6 @@ Hook that provides access to currently selected locale and a setter function to 
 ### `useLocale`
 
 Convenience hook that returns only the currently selected locale.
-
-### `InternationalizationProvider`
-
-Context provider component that provides functionality for `useInternationalization` and `useLocale`. A basic implementation of a [React Context](https://react.dev/learn/passing-data-deeply-with-context).
 
 
 ## Pluralization
