@@ -5,6 +5,7 @@ import { render, screen } from "@testing-library/react";
 describe("createInternationalizationProvider", () => {
   const {
     localize,
+    useLocale,
     useInternationalization,
     InternationalizationProvider,
   } = createInternationalizationContext(["en-US", "sv-SE"] as const);
@@ -148,6 +149,24 @@ describe("createInternationalizationProvider", () => {
       );
 
       expect(setLocale).toHaveBeenCalledWith("en-US");
+    });
+  });
+
+  describe("#useLocale", () => {
+    it("returns the current locale", async () => {
+      function Component() {
+        const locale = useLocale();
+
+        expect(locale).toBe("en-US");
+
+        return null;
+      }
+
+      render(
+        <InternationalizationProvider locale='en-US'>
+          <Component />
+        </InternationalizationProvider>,
+      );
     });
   });
 });
