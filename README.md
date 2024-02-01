@@ -21,7 +21,7 @@ const {
   useLocale,
 } = createInternationalizationContext([
   Locale.enGB,
-  Locale.svSE.
+  Locale.svSE,
 ]);
 
 export {
