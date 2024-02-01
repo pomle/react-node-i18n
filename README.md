@@ -223,7 +223,7 @@ const Slogan = () => {
     return <>Här får du mer för pengarna!</>;
   }
 
-  return <>Best Value on the WWW</b>;
+  return <>Best Value on the WWW</>;
 }
 ```
 
