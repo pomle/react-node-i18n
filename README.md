@@ -9,20 +9,15 @@ An internationalization library based on React components.
 ```tsx
 import { createInternationalizationContext } from "@pomle/react-node-i18n";
 
-export enum Locale {
-  enGB = "en_GB",
-  svSE = "sv_SE",
-}
+const Locales = ["en_GB", "sv_SE"] as const;
+export type Locale = (typeof Locales)[nunber];
 
 const {
   InternationalizationProvider,
   localize,
   useInternationalization,
   useLocale,
-} = createInternationalizationContext([
-  Locale.enGB,
-  Locale.svSE,
-]);
+} = createInternationalizationContext(Locales);
 
 export {
   InternationalizationProvider,
