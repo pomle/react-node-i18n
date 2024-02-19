@@ -10,7 +10,7 @@ An internationalization library based on React components.
 import { createInternationalizationContext } from "@pomle/react-node-i18n";
 
 const Locales = ["en_GB", "sv_SE"] as const;
-export type Locale = (typeof Locales)[nunber];
+export type Locale = (typeof Locales)[number];
 
 const {
   InternationalizationProvider,
